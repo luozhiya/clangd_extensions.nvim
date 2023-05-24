@@ -253,6 +253,14 @@ local function inline_handler(err, result, ctx)
 
     for _, hint in pairs(result) do
         local text = hint.label
+        if string.sub(text, 1, 1) == ':' then
+            text = string.sub(text, 3, -1)
+            text = ' 🆃 [' .. text .. ']'
+        end
+        if string.sub(text, 1, 1) == '-' then
+            text = string.sub(text, 4, -1)
+            text = ' ▶ [' .. text .. ']' -- ▶ 
+        end        
         if hint.paddingLeft then
             text = " " .. text
         end
